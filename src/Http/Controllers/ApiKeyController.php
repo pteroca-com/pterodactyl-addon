@@ -6,13 +6,8 @@ use Pterodactyl\Http\Controllers\Api\Application\ApplicationApiController;
 use Xepare\PterodactylApiAddon\Http\Requests\GetUsersApiKeysRequest;
 use Pterodactyl\Models\ApiKey;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Contracts\Encryption\Encrypter;
 use Pterodactyl\Models\User;
-use Pterodactyl\Services\Api\KeyCreationService;
-use Pterodactyl\Repositories\Eloquent\ApiKeyRepository;
-use Pterodactyl\Transformers\Api\Client\ApiKeyTransformer;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Pterodactyl\Http\Requests\Api\Client\Account\StoreApiKeyRequest;
+use Xepare\PterodactylApiAddon\Http\Transformer\PterocaApiKeyTransformer;
 
 class ApiKeyController extends ApplicationApiController
 {
@@ -25,7 +20,7 @@ class ApiKeyController extends ApplicationApiController
     {
         $user = User::findOrFail($user);
         return $this->fractal->collection($user->apiKeys)
-            ->transformWith($this->getTransformer(ApiKeyTransformer::class))
+            ->transformWith($this->getTransformer(PterocaApiKeyTransformer::class))
             ->toArray();
     }
 
@@ -45,9 +40,9 @@ class ApiKeyController extends ApplicationApiController
             request('description'),
             request('allowed_ips')
         );
-        
+
         return $this->fractal->item($token->accessToken)
-            ->transformWith($this->getTransformer(ApiKeyTransformer::class))
+            ->transformWith($this->getTransformer(PterocaApiKeyTransformer::class))
             ->addMeta([
                 'secret_token' => $token->plainTextToken
             ])
@@ -62,12 +57,12 @@ class ApiKeyController extends ApplicationApiController
     public function delete(GetUsersApiKeysRequest $request, $user, string $identifier)
     {
         $user = User::findOrFail($user);
-        
+
         $key = $user->apiKeys()
             ->where('key_type', ApiKey::TYPE_ACCOUNT)
             ->where('identifier', $identifier)
             ->firstOrFail();
-        
+
         $key->delete();
 
         return JsonResponse::create([], JsonResponse::HTTP_NO_CONTENT);
