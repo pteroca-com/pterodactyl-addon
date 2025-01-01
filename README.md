@@ -16,4 +16,5 @@ As the project evolves, more features will be added to further enhance the integ
 To install the package via Composer, run the following command:
 
 ```bash
-composer require konradsroga/pteroca-api-addon
+composer require [vendor]/[package]
+```
