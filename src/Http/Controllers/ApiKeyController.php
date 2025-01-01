@@ -1,13 +1,13 @@
 <?php
 
-namespace Xepare\PterodactylApiAddon\Http\Controllers;
+namespace Pteroca\PterodactylAddon\Http\Controllers;
 
 use Pterodactyl\Http\Controllers\Api\Application\ApplicationApiController;
-use Xepare\PterodactylApiAddon\Http\Requests\GetUsersApiKeysRequest;
+use Pteroca\PterodactylAddon\Http\Requests\GetUsersApiKeysRequest;
 use Pterodactyl\Models\ApiKey;
 use Illuminate\Http\JsonResponse;
 use Pterodactyl\Models\User;
-use Xepare\PterodactylApiAddon\Http\Transformer\PterocaApiKeyTransformer;
+use Pteroca\PterodactylAddon\Http\Transformer\PterocaApiKeyTransformer;
 
 class ApiKeyController extends ApplicationApiController
 {

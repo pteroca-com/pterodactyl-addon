@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Xepare\PterodactylApiAddon\Http\Controllers\ApiKeyController;
+use Pteroca\PterodactylAddon\Http\Controllers\ApiKeyController;
 
 Route::prefix('/api/application')->middleware(['api', 'throttle:api.application'])->group(function () {
 

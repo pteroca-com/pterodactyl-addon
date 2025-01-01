@@ -1,6 +1,6 @@
 <?php
 
-namespace Xepare\PterodactylApiAddon\Http\Transformer;
+namespace Pteroca\PterodactylAddon\Http\Transformer;
 
 use Pterodactyl\Transformers\Api\Client\ApiKeyTransformer;
 use Pterodactyl\Models\ApiKey;

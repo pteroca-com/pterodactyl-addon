@@ -1,17 +1,17 @@
 {
-    "name": "rene-roscher/pterodactyl-api-addon",
+    "name": "pteroca-com/pterodactyl-addon",
     "description": "This package brings an API interface to the application API in order to be able to create API tokens for a user",
     "keywords": [
         "PterodactylApiAddon",
         "laravel",
         "pterodactyl-api-addon"
     ],
-    "homepage": "https://github.com/pterodactylapiaddon/pterodactyl-api-addon",
+    "homepage": "https://pteroca.com",
     "license": "MIT",
     "authors": [
         {
-            "name": "Rene Roscher",
-            "email": "roscher794@gmail.com",
+            "name": "Konrad Sroga",
+            "email": "konradsroga@gmail.com",
             "role": "Developer"
         }
     ],
@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Xepare\\PterodactylApiAddon\\": "src"
+            "Pteroca\\PterodactylAddon\\": "src"
         }
     },
     "config": {
@@ -29,7 +29,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Xepare\\PterodactylApiAddon\\PterodactylApiAddonServiceProvider"
+                "Pteroca\\PterodactylAddon\\PterodactylApiAddonServiceProvider"
             ]
         }
     },
