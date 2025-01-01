@@ -7,7 +7,7 @@ use Pteroca\PterodactylAddon\Http\Requests\GetUsersApiKeysRequest;
 use Pterodactyl\Models\ApiKey;
 use Illuminate\Http\JsonResponse;
 use Pterodactyl\Models\User;
-use Pteroca\PterodactylAddon\Http\Transformer\PterocaApiKeyTransformer;
+use Pterodactyl\Transformers\Api\Client\ApiKeyTransformer;
 
 class ApiKeyController extends ApplicationApiController
 {
@@ -20,7 +20,7 @@ class ApiKeyController extends ApplicationApiController
     {
         $user = User::findOrFail($user);
         return $this->fractal->collection($user->apiKeys)
-            ->transformWith($this->getTransformer(PterocaApiKeyTransformer::class))
+            ->transformWith($this->getTransformer(ApiKeyTransformer::class))
             ->toArray();
     }
 
@@ -42,7 +42,7 @@ class ApiKeyController extends ApplicationApiController
         );
 
         return $this->fractal->item($token->accessToken)
-            ->transformWith($this->getTransformer(PterocaApiKeyTransformer::class))
+            ->transformWith($this->getTransformer(ApiKeyTransformer::class))
             ->addMeta([
                 'secret_token' => $token->plainTextToken
             ])
