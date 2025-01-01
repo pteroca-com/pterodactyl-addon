@@ -13,8 +13,8 @@ As the project evolves, more features will be added to further enhance the integ
 
 ## Installation
 
-To install the package via Composer, run the following command:
+To install the package via Composer, run the following command in root directory of your Pterodactyl panel:
 
 ```bash
-composer require [vendor]/[package]
+composer require pteroca-com/pterodactyl-addon
 ```
