@@ -40,11 +40,11 @@ class SSOAuthorizationController extends ApplicationApiController
         }
 
         Auth::login($user);
-        $request->session()->put('auth_confirmation_token', [
-            'user_id' => $pterodactylUserId,
-            'token_value' => Str::random(64),
-            'expires_at' => CarbonImmutable::now()->addMinutes(5),
-        ]);
+//        $request->session()->put('auth_confirmation_token', [
+//            'user_id' => $pterodactylUserId,
+//            'token_value' => Str::random(64),
+//            'expires_at' => CarbonImmutable::now()->addMinutes(5),
+//        ]);
 
         return redirect()->intended('/');
     }
