@@ -45,10 +45,11 @@ class SSOAuthorizationController extends ApplicationApiController
 
         Auth::login($user);
 
-//        $auth = Container::getInstance()->make(AuthManager::class);
-//        $auth->guard()->login($user, true);
-//        $auth->guard('web')->login($user, true);
-//        Event::dispatch(new DirectLogin($user, true));
+        $request->session()->put('auth_confirmation_token', [
+            'user_id' => $user->id,
+            'token_value' => $token = Str::random(64),
+            'expires_at' => CarbonImmutable::now()->addMinutes(5),
+        ]);
 
         dd(Auth::check(), Auth::user());
 
