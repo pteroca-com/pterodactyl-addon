@@ -15,7 +15,7 @@ Route::prefix('/api/application')->middleware(['api', 'throttle:api.application'
     });
 });
 
-Route::prefix('/pteroca')->middleware(['throttle:authentication'])->group(function () {
+Route::prefix('/pteroca')->middleware(['throttle:authentication', StartSession::class])->group(function () {
     Route::post('/authorize', [SSOAuthorizationController::class, 'index'])
-        ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]); // Wyłączenie CSRF
+        ->withoutMiddleware([VerifyCsrfToken::class]);
 });
