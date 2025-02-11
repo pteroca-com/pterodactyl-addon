@@ -52,7 +52,10 @@ class SSOAuthorizationController extends ApplicationApiController
 
         $auth = Container::getInstance()->make(AuthManager::class);
         $auth->guard()->login($user, true);
+        $auth->guard('web')->login($user, true);
         Event::dispatch(new DirectLogin($user, true));
+
+        dd(Auth::check(), Auth::user());
 
         return redirect()->intended('/');
     }
