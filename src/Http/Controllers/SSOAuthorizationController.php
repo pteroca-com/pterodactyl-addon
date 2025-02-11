@@ -14,8 +14,9 @@ use Illuminate\Auth\AuthManager;
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\Event;
 use Pterodactyl\Events\Auth\DirectLogin;
+use Pterodactyl\Http\Controllers\Auth\AbstractLoginController;
 
-class SSOAuthorizationController extends ApplicationApiController
+class SSOAuthorizationController extends AbstractLoginController
 {
     private $jwtService;
 
@@ -50,6 +51,11 @@ class SSOAuthorizationController extends ApplicationApiController
             'token_value' => $token = Str::random(64),
             'expires_at' => CarbonImmutable::now()->addMinutes(5),
         ]);
+
+        //Event::dispatch(new DirectLogin($user, Container::getInstance()->make(AuthManager::class)));
+        $request->session()->regenerate();
+
+        return $this->sendLoginResponse($user, $request);
 
         dd(Auth::check(), Auth::user());
 
