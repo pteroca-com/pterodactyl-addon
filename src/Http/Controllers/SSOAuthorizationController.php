@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Carbon\CarbonImmutable;
 use Pterodactyl\Models\User;
+use Illuminate\Auth\AuthManager;
+use Illuminate\Container\Container;
+use Illuminate\Support\Facades\Event;
+use Pterodactyl\Events\Auth\DirectLogin;
 
 class SSOAuthorizationController extends ApplicationApiController
 {
@@ -45,6 +49,10 @@ class SSOAuthorizationController extends ApplicationApiController
 //            'token_value' => Str::random(64),
 //            'expires_at' => CarbonImmutable::now()->addMinutes(5),
 //        ]);
+
+        $auth = Container::getInstance()->make(AuthManager::class);
+        $auth->guard()->login($user, true);
+        Event::dispatch(new DirectLogin($user, true));
 
         return redirect()->intended('/');
     }
