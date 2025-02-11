@@ -15,5 +15,5 @@ Route::prefix('/api/application')->middleware(['api', 'throttle:api.application'
 });
 
 Route::middleware(['web'])->group(function () {
-    Route::get('/pteroca/authorize', [SSOAuthorizationController::class, 'index']);
+    Route::post('/pteroca/authorize', [SSOAuthorizationController::class, 'index']);
 });
