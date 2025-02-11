@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Middleware\VerifyCsrfToken;
+use Pterodactyl\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 use Pteroca\PterodactylAddon\Http\Controllers\ApiKeyController;
 use Pteroca\PterodactylAddon\Http\Controllers\SSOAuthorizationController;
