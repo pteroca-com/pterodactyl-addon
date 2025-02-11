@@ -22,6 +22,7 @@ class SSOAuthorizationController extends AbstractLoginController
 
     public function __construct(JwtService $jwtService)
     {
+        parent::__construct();
         $this->jwtService = $jwtService;
     }
 
