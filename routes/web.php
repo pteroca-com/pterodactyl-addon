@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Middleware\VerifyCsrfToken;
-use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Route;
 use Pteroca\PterodactylAddon\Http\Controllers\ApiKeyController;
 use Pteroca\PterodactylAddon\Http\Controllers\SSOAuthorizationController;
@@ -15,9 +14,6 @@ Route::prefix('/api/application')->middleware(['api', 'throttle:api.application'
     });
 });
 
-Route::prefix('/pteroca')
-    ->middleware(['throttle:authentication', StartSession::class])
-    ->group(function () {
-        Route::post('/authorize', [SSOAuthorizationController::class, 'index'])
-            ->withoutMiddleware([VerifyCsrfToken::class]);
-    });
+Route::middleware(['web'])->group(function () {
+    Route::get('/pteroca/authorize', [SSOAuthorizationController::class, 'index']);
+});
