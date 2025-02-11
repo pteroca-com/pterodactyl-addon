@@ -16,7 +16,9 @@
         }
     ],
     "require": {
-        "php": "^8.0|^8.1|^8.2|^8.3"
+        "php": "^8.0|^8.1|^8.2|^8.3",
+        "firebase/php-jwt": "^6.11",
+        "paragonie/sodium_compat": "^2.1"
     },
     "autoload": {
         "psr-4": {
@@ -34,5 +36,8 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "require-dev": {
+        "illuminate/http": "^11.42"
+    }
 }

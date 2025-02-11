@@ -3,6 +3,7 @@
 namespace Pteroca\PterodactylAddon;
 
 use Illuminate\Support\ServiceProvider;
+use Pteroca\PterodactylAddon\Commands\GenerateSecretKey;
 use Spatie\LaravelPackageTools\Package;
 
 class PterodactylApiAddonServiceProvider extends ServiceProvider
@@ -15,7 +16,10 @@ class PterodactylApiAddonServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->commands([
+            GenerateSecretKey::class,
+        ]);
+
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
     }
-
 }
