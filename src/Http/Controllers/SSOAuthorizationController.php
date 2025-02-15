@@ -44,6 +44,6 @@ class SSOAuthorizationController extends AbstractLoginController
 
         $this->sendLoginResponse($user, $request);
 
-        return redirect()->intended('/');
+        return redirect()->intended($request->post('pteroca_sso_redirect') ?? '/');
     }
 }

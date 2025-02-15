@@ -22,7 +22,6 @@ Route::middleware([
     StartSession::class,
     ShareErrorsFromSession::class,
     SubstituteBindings::class,
-    // itp., ale bez VerifyCsrfToken
 ])->group(function () {
     Route::post('/pteroca/authorize', [SSOAuthorizationController::class, 'index']);
 });
