@@ -17,10 +17,7 @@ class PterocaPluginVersionController extends ApplicationApiController
     public function getVersion()
     {
         return response()->json([
-            'name' => 'PteroCA Pterodactyl Addon',
             'version' => self::VERSION,
-            'description' => 'This package brings an API interface to the application API in order to be able to create API tokens for a user',
-            'installed' => true
         ]);
     }
 }
