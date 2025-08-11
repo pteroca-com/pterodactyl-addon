@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Pteroca\PterodactylAddon\Http\Controllers\ApiKeyController;
 use Pteroca\PterodactylAddon\Http\Controllers\SSOAuthorizationController;
+use Pteroca\PterodactylAddon\Http\Controllers\PterocaPluginVersionController;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
@@ -15,6 +16,9 @@ Route::prefix('/api/application')->middleware(['api', 'throttle:api.application'
         Route::post('{user}/api-keys', [ApiKeyController::class, 'store']);
         Route::delete('{user}/api-keys/{identifier}', [ApiKeyController::class, 'delete']);
     });
+    
+    /** Plugin Version */
+    Route::get('/pteroca/version', [PterocaPluginVersionController::class, 'getVersion']);
 });
 
 Route::middleware([
