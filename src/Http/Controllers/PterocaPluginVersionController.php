@@ -3,7 +3,6 @@
 namespace Pteroca\PterodactylAddon\Http\Controllers;
 
 use Pterodactyl\Http\Controllers\Api\Application\ApplicationApiController;
-use Illuminate\Http\JsonResponse;
 
 class PterocaPluginVersionController extends ApplicationApiController
 {
